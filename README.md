@@ -69,26 +69,26 @@ Streamlit App:
 🔍 Example Use
 ----------------
 1. Open the Streamlit app.
-2. Type in a feddit name like `Dully Topic 1`.
+2. Type in a feddit name like `Dummy Topic 1`.
 3. Select "By Limit", enter `10`, and click "Fetch Comments".
 4. Comments will appear sorted by their predicted sentiment.
 
 
 📁 Project Structure
 ---------------------
-.
-│   .gitignore
-│   api.py
-│   main.py
-│   requirements.txt
-│   streamlit_app.py
-│   test.py
-│   utils.py
-│
-├───.github
-│   └───workflows
-│           ci.yml
-│
-└───model
-        utils.py
-        __init__.py
+    .
+    │   .gitignore
+    │   api.py
+    │   main.py
+    │   requirements.txt
+    │   streamlit_app.py
+    │   test.py
+    │   utils.py
+    │
+    ├───.github
+    │   └───workflows
+    │           ci.yml
+    │
+    └───model
+            utils.py
+            __init__.py
