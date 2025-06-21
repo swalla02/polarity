@@ -1,0 +1,7 @@
+fastapi==0.115.13
+pandas==2.3.0
+pydantic==2.11.7
+Requests==2.32.4
+streamlit==1.45.1
+transformers==4.44.2
+uvicorn==0.34.3
