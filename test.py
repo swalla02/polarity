@@ -3,6 +3,7 @@ from api import app
 
 client = TestClient(app)
 
+
 def test_comments_polarity_limit_success():
     response = client.post("/api/v1/comments_polarity/limit", json={
         "feddit_name": "Dummy Topic 1",
@@ -11,12 +12,14 @@ def test_comments_polarity_limit_success():
     assert response.status_code == 200
     assert "comments" in response.json()
 
+
 def test_comments_polarity_limit_missing_name():
     response = client.post("/api/v1/comments_polarity/limit", json={
         "limit": 5
     })
     assert response.status_code != 200
     assert response.json()["detail"][0]["msg"] == "Field required"
+
 
 def test_comments_polarity_with_time_success():
     response = client.post("/api/v1/comments_polarity/with_time", json={

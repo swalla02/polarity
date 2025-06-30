@@ -12,7 +12,8 @@ feddit_name = st.text_input("Enter Feddit Name :")
 sort_order = st.selectbox("Sort by polarity:", ["Descending", "Ascending"])
 
 if mode == "🔢 By Limit":
-    limit = st.slider("Number of comments to fetch:", min_value=1, max_value=25, value=10)
+    limit = st.slider("Number of comments to fetch:",
+                      min_value=1, max_value=25, value=10)
     if st.button("Fetch Comments"):
         if not feddit_name:
             st.warning("Please enter a Feddit name.")
@@ -23,13 +24,16 @@ if mode == "🔢 By Limit":
                     "limit": limit
                 }
                 try:
-                    response = requests.post(f"{API_BASE_URL}/limit", json=payload)
+                    response = requests.post(
+                        f"{API_BASE_URL}/limit", json=payload)
                     response.raise_for_status()
                     comments = response.json().get("comments", [])
                     df = pd.DataFrame(comments)
-                    df.set_index("id" ,inplace=True)
-                    df = df.sort_values("polarity_score", ascending=(sort_order == "Ascending"))
-                    st.dataframe(df[["text", "polarity" , "polarity_score"]], use_container_width=True)
+                    df.set_index("id", inplace=True)
+                    df = df.sort_values("polarity_score", ascending=(
+                        sort_order == "Ascending"))
+                    st.dataframe(
+                        df[["text", "polarity", "polarity_score"]], use_container_width=True)
                 except Exception as e:
                     st.error(f"❌ Error: {e}")
 
@@ -46,18 +50,23 @@ else:
                 payload = {
                     "feddit_name": feddit_name,
                     "time_range": [
-                        datetime.combine(start_time, datetime.min.time()).isoformat(),
-                        datetime.combine(end_time, datetime.min.time()).isoformat()
+                        datetime.combine(
+                            start_time, datetime.min.time()).isoformat(),
+                        datetime.combine(
+                            end_time, datetime.min.time()).isoformat()
                     ]
                 }
                 try:
-                    response = requests.post(f"{API_BASE_URL}/with_time", json=payload)
+                    response = requests.post(
+                        f"{API_BASE_URL}/with_time", json=payload)
                     response.raise_for_status()
                     comments = response.json().get("comments_with_time", [])
                     df = pd.DataFrame(comments)
                     df.set_index("id", inplace=True)
                     df["created_at"] = pd.to_datetime(df["created_at"])
-                    df = df.sort_values("polarity_score", ascending=(sort_order == "Ascending"))
-                    st.dataframe(df[["created_at", "text", "polarity", "polarity_score"]], use_container_width=True)
+                    df = df.sort_values("polarity_score", ascending=(
+                        sort_order == "Ascending"))
+                    st.dataframe(
+                        df[["created_at", "text", "polarity", "polarity_score"]], use_container_width=True)
                 except Exception as e:
                     st.error(f"❌ Error: {e}")
