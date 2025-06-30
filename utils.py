@@ -12,7 +12,10 @@ class inputData(BaseModel):
     """
     feddit_name: str
     limit: Optional[int] = Field(
-        default=5, ge=1, le=25, description="Number of comments to retrieve (1-25)")
+        default=5,
+        ge=1,
+        le=25,
+        description="Number of comments to retrieve (1-25)")
 
 
 class outputComment(BaseModel):
@@ -61,7 +64,8 @@ class outputData_with_time(BaseModel):
     Contains a list of comments with their polarity.
     """
     comments_with_time: list[outputComment_with_time] = Field(
-        default_factory=list, description="List of comments with polarity and creation time")
+        default_factory=list,
+        description="List of comments with polarity and creation time")
 
 
 def sort_comments_by_polarity(comments: outputData) -> outputData:
@@ -112,7 +116,8 @@ def get_subfeddit_comments(subfeddit_id: str, limit: int = 5):
     return comments_list
 
 
-def get_subfeddit_comments_with_time_range(subfeddit_id: str, time_range: List[datetime]):
+def get_subfeddit_comments_with_time_range(
+        subfeddit_id: str, time_range: List[datetime]):
     start, end = time_range
     if start >= end:
         raise ValueError("Start time must be strictly earlier than end time")
