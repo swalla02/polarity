@@ -6,3 +6,4 @@ streamlit==1.45.1
 transformers==4.44.2
 uvicorn==0.34.3
 httpx==0.24.1
+torch==2.0.1
