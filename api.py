@@ -35,7 +35,11 @@ def get_comments_and_polarity_with_limit(input_data: inputData):
                 id=comment['id'],
                 text=comment['text'],
                 polarity=comment['polarity'],
-                polarity_score=comment['polarity_score']) for comment in comments])
+                polarity_score=comment['polarity_score']
+            )
+            for comment in comments
+        ]
+    )
 
     return output
 
@@ -69,6 +73,10 @@ def get_comments_and_polarity_with_time_range(input_data: inputData_with_time):
                 text=comment['text'],
                 polarity=comment['polarity'],
                 polarity_score=comment['polarity_score'],
-                created_at=comment['created_at']) for comment in comments_list])
+                created_at=comment['created_at']
+            ) 
+            for comment in comments_list
+            ]
+        )
 
     return output

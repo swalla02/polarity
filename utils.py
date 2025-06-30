@@ -42,8 +42,10 @@ class inputData_with_time(BaseModel):
     Input data model for the API.
     """
     feddit_name: str
-    time_range: List[datetime] = Field(...,
-                                       description="Time range for filtering comments")
+    time_range: List[datetime] = Field(
+        ...,
+        description="Time range for filtering comments"
+    )
 
 
 class outputComment_with_time(BaseModel):
