@@ -74,7 +74,7 @@ def get_comments_and_polarity_with_time_range(input_data: inputData_with_time):
                 polarity=comment['polarity'],
                 polarity_score=comment['polarity_score'],
                 created_at=comment['created_at']
-            ) 
+            )
             for comment in comments_list
             ]
         )

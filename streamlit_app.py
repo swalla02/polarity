@@ -68,7 +68,10 @@ else:
                     df = df.sort_values("polarity_score", ascending=(
                         sort_order == "Ascending"))
                     st.dataframe(
-                        df[["created_at", "text", "polarity", "polarity_score"]],
+                        df[["created_at",
+                            "text",
+                            "polarity",
+                            "polarity_score"]],
                         use_container_width=True)
                 except Exception as e:
                     st.error(f"❌ Error: {e}")
